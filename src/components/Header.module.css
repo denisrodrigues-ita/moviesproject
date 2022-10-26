@@ -1,0 +1,35 @@
+h1,
+h2 {
+  font-size: xx-large;
+}
+
+.header>div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.header svg {
+  height: 8rem;
+  width: 10rem;
+}
+
+.header a {
+  color: unset;
+  font-size: large;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.header nav {
+  margin: 2rem 0;
+}
+
+.header nav ul {
+  display: flex;
+}
+
+.header nav ul li {
+  box-shadow: 1px 0 0 0;
+}

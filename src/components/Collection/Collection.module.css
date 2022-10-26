@@ -1,0 +1,26 @@
+.collection > div {
+  background-color: #111010;
+  display: flex;
+  margin: 0 1rem;
+  gap: 1rem;
+}
+
+.collection p {
+  text-align: justify;
+}
+
+.card {
+  display: flex;
+  padding-top: 1rem;
+}
+
+.collection a {
+  display: inline-block;
+  border-radius: .5rem;
+  margin: .5rem 0;
+  padding: .2rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #CFCD3E;
+  color: #820D0D;
+}

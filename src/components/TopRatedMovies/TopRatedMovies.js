@@ -1,10 +1,9 @@
 import React from 'react';
 import { apiKey, baseUrlImage, baseUrl } from '../../Api';
 import { AiFillStar } from 'react-icons/ai';
-import styles from './TopRated.module.css';
 import { Link } from 'react-router-dom';
 
-const TopRated = () => {
+const TopRatedMovies = () => {
 
   const [movies, setMovies] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
@@ -13,7 +12,7 @@ const TopRated = () => {
     try {
       setLoading(true);
       const fetchMovies = async () => {
-        const response = await fetch(`${baseUrl}top_rated${apiKey}`);
+        const response = await fetch(`${baseUrl}/movie/top_rated${apiKey}`);
         const json = await response.json();
         setMovies(json.results);
       }
@@ -26,8 +25,8 @@ const TopRated = () => {
   }, []);
 
   return (
-    <section className={styles.toprated}>
-      <div className={styles.flex}>
+    <section>
+      <div className='container'>
         {movies.map(movie => (
           <div key={movie.id}>
             <img src={baseUrlImage + movie.poster_path} alt={movie.title} />
@@ -42,4 +41,4 @@ const TopRated = () => {
   )
 }
 
-export default TopRated
+export default TopRatedMovies

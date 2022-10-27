@@ -27,8 +27,8 @@ const Collection = () => {
             <img src={`${baseUrlImage}${collection.poster_path}`} alt={collection.name} />
           </div>
           <div>
-            <h2>{collection.name}</h2>
-            <p>{collection.overview}</p>
+            <h3>{collection.name}</h3>
+            <p>Overview: {collection.overview}</p>
           </div>
         </div>
 
@@ -38,8 +38,9 @@ const Collection = () => {
               <img src={`${baseUrlImage}${part.poster_path}`} alt={part.title} />
             </div>
             <div>
-              <h2>{part.title}</h2>
-              <p>{part.overview}</p>
+              <h3>Title: {part.title}</h3>
+              <p>Overview: {part.overview}</p>
+              <p>Year: {part.release_date}</p>
               <Link to={`/movie/${part.id}`}>View more</Link>
             </div>
           </div>

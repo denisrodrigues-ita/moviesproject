@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { baseUrl, apiKey, baseUrlImage } from '../../Api';
 import { Link } from 'react-router-dom';
-import styles from './Movie.module.css';
 
 const Movie = () => {
 
@@ -11,7 +10,7 @@ const Movie = () => {
 
   React.useEffect(() => {
     const fetchMovie = async () => {
-      const response = await fetch(`${baseUrl}${id}${apiKey}`);
+      const response = await fetch(`${baseUrl}/movie/${id}${apiKey}`);
       const json = await response.json();
       setMovie(json);
     }
@@ -20,7 +19,7 @@ const Movie = () => {
 
   if (movie)
     return (
-      <section className={styles.movie}>
+      <section className='container-single'>
         <div>
           <img src={baseUrlImage + movie.poster_path} alt={movie.title} />
         </div>

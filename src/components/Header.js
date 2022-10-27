@@ -19,7 +19,8 @@ const Header = () => {
       </div>
       <nav>
         <ul>
-          <li><NavLink to='/top-rated'>Top Rated</NavLink></li>
+          <li><NavLink to='/top-rated-movies'>Top Rated Movies</NavLink></li>
+          <li><NavLink to='/top-rated-series'>Top Rated Series</NavLink></li>
           <li><NavLink to='/trending'>Trending</NavLink></li>
           <li><NavLink to='/discover'>Discover</NavLink></li>
           <li><NavLink to='/genres'>Genres</NavLink></li>

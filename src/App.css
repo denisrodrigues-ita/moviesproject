@@ -40,3 +40,59 @@ a.active {
   border-radius: 1.1rem;
   transition: .3s ;
 }
+
+.container {
+  padding-top: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.container > div {
+  
+  width: 300px;
+  text-align: center;
+  margin: auto;
+  background-color: #111010;
+}
+
+.container img {
+  margin-top: .5rem;
+  max-width: 200px;
+}
+
+.container a {
+  display: inline-block;
+  border-radius: .5rem;
+  margin: .5rem 0;
+  padding: .2rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #CFCD3E;
+  color: #820D0D;
+}
+
+.container-single {
+  background-color: #111010;
+  display: flex;
+  gap: 1rem;
+  margin: 0 1rem;
+}
+
+.container-single p {
+  text-align: justify;
+  line-height: 1.5;
+  padding-right: 1rem;
+}
+
+.container-single a {
+  display: inline-block;
+  border-radius: .5rem;
+  margin: .5rem 0;
+  padding: .2rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #CFCD3E;
+  color: #820D0D;
+}

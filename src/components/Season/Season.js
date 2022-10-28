@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import imageNoAvailable from '../../img/No_Image_Available.jpg';
 import { baseUrl, apiKey, baseUrlImage } from '../../Api';
-import styles from './Season.module.css';
 
 const Season = () => {
 
@@ -34,9 +34,9 @@ const Season = () => {
         {episode.episodes && episode.episodes.map(ep => (
           <div key={ep.id} className='container-single'>
             <div>
-              <img src={baseUrlImage + ep.still_path} alt={ep.name} />
+              {ep.still_path === null ? <img src={imageNoAvailable} alt={ep.name} width='300' height='200' /> : <img src={baseUrlImage + ep.still_path} alt={ep.name} />}
             </div>
-            <div className={styles.cardSeries}>
+            <div>
               <h3>{ep.name}</h3>
               <p>Air date: {ep.air_date}</p>
               <p>Runtime: {ep.runtime}</p>
@@ -47,7 +47,7 @@ const Season = () => {
           </div>
         ))}
       </section>
-    )
+    );
 }
 
 export default Season;

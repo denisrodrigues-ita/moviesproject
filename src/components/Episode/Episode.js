@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { apiKey, baseUrlImage, baseUrl } from '../../Api';
 import imageNoAvailable from '../../img/No_Image_Available.jpg';
 import styles from './Episode.module.css';
@@ -46,6 +46,7 @@ const Episode = () => {
               <div>
                 <p>Name: {guest.name}</p>
                 <p>Character: {guest.character}</p>
+                <Link to={`/person/${guest.id}`}>More info</Link>
               </div>
             </div>
           ))}

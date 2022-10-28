@@ -17,3 +17,14 @@
 .flexCard p {
   font-size: medium;
 }
+
+.flexCard a {
+  display: inline-block;
+  border-radius: .5rem;
+  margin: .5rem 0;
+  padding: .2rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #CFCD3E;
+  color: #820D0D;
+}

@@ -13,6 +13,7 @@ import Discover from './components/Discover/Discover';
 import Tv from './components/Tv/Tv';
 import Season from './components/Season/Season';
 import Episode from './components/Episode/Episode';
+import Person from './components/Person/Person';
 import './App.css';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="trending" element={<Trending />} />
         <Route path="genres" element={<Genres />} />
         <Route path="discover" element={<Discover />} />
+        <Route path="person/:id" element={<Person />} />
         <Route path="movie/:id" element={<Movie />} />
         <Route path="tv/:id" element={<Tv />} />
         <Route path="tv/:id/season/:se" element={<Season />} />

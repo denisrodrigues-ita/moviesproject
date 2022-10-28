@@ -33,7 +33,7 @@ const TopRatedSeries = () => {
             <p>{serie.name}</p>
             <p>Release date: {serie.first_air_date}</p>
             <p><AiFillStar /> {serie.vote_average}</p>
-            <Link to={`/serie/${serie.id}`}>View Details</Link>
+            <Link to={`/tv/${serie.id}`}>View Details</Link>
           </div>
         ))}
       </div>

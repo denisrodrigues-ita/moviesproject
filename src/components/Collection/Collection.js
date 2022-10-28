@@ -17,8 +17,6 @@ const Collection = () => {
     fetchCollection();
   }, [id]);
 
-  console.log(collection);
-
   if (collection)
     return (
       <section className={styles.collection}>

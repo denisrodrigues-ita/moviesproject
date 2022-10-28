@@ -32,10 +32,10 @@ const Trending = () => {
         {trendings.map(trending => (
           <div key={trending.id}>
             <img src={baseUrlImage + trending.poster_path} alt={trending.title} />
-            <p>{trending.title}</p>
-            <p>Year: {trending.release_date}</p>
+            <p>Title: {trending.title ? trending.title : trending.name}</p>
+            <p>Date: {trending.release_date ? trending.release_date : trending.first_air_date}</p>
             <p><AiFillStar /> {trending.vote_average}</p>
-            <Link to={`/movie/${trending.id}`}>View Details</Link>
+            <Link to={`/${trending.media_type}/${trending.id}`}>View Details</Link>
           </div>
         ))}
       </div>

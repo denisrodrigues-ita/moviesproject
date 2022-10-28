@@ -10,8 +10,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Movie from './components/Movie/Movie';
 import Discover from './components/Discover/Discover';
-import Serie from './components/Serie/Serie';
+import Tv from './components/Tv/Tv';
 import Season from './components/Season/Season';
+import Episode from './components/Episode/Episode';
 import './App.css';
 
 function App() {
@@ -28,8 +29,9 @@ function App() {
         <Route path="genres" element={<Genres />} />
         <Route path="discover" element={<Discover />} />
         <Route path="movie/:id" element={<Movie />} />
-        <Route path="serie/:id" element={<Serie />} />
-        <Route path="serie/:id/season/:se" element={<Season />} />
+        <Route path="tv/:id" element={<Tv />} />
+        <Route path="tv/:id/season/:se" element={<Season />} />
+        <Route path="tv/:id/season/:se/episode/:nu" element={<Episode />} />
       </Routes>
       <Footer />
     </BrowserRouter>

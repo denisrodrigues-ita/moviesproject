@@ -1,0 +1,19 @@
+.flexCard {
+  margin: 1rem;
+  background-color: #111010;
+}
+
+.flexCard > div {
+  margin: 1rem 0;
+  display: flex;
+  gap: .5rem;
+}
+
+.flexCard img {
+  height: 100px;
+  width: 67px;
+}
+
+.flexCard p {
+  font-size: medium;
+}

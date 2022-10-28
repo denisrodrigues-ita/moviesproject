@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { baseUrl, apiKey, baseUrlImage } from '../../Api';
 import { Link } from 'react-router-dom';
 
-const Serie = () => {
+const Tv = () => {
 
   const [serie, setSerie] = React.useState(null);
   const { id } = useParams();
@@ -38,7 +38,6 @@ const Serie = () => {
           </div>
         </div>
 
-
         {serie.seasons && serie.seasons.map(season => (
           <div key={season.id} className='container-single'>
             <div>
@@ -50,7 +49,7 @@ const Serie = () => {
               <p>Episodes: {season.episode_count}</p>
               <p>{season.overview && `overview: ${season.overview}`}</p>
               <p>Season number: {season.season_number}</p>
-              <Link to={`/serie/${serie.id}/season/${season.season_number}`}>View season</Link>
+              <Link to={`/tv/${serie.id}/season/${season.season_number}`}>View season</Link>
             </div>
           </div>
         ))}
@@ -58,4 +57,4 @@ const Serie = () => {
     );
 }
 
-export default Serie
+export default Tv;

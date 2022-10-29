@@ -5,7 +5,6 @@ import TopRatedMovies from './components/TopRatedMovies/TopRatedMovies';
 import TopRatedSeries from './components/TopRatedSeries/TopRatedSeries';
 import Collection from './components/Collection/Collection';
 import Trending from './components/Trending/Trending';
-import Genres from './components/Genres/Genres';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Movie from './components/Movie/Movie';
@@ -14,6 +13,7 @@ import Tv from './components/Tv/Tv';
 import Season from './components/Season/Season';
 import Episode from './components/Episode/Episode';
 import Person from './components/Person/Person';
+import Search from './components/Search/Search';
 import './App.css';
 
 function App() {
@@ -27,8 +27,8 @@ function App() {
         <Route path="top-rated-series" element={<TopRatedSeries />} />
         <Route path="collection/:id" element={<Collection />} />
         <Route path="trending" element={<Trending />} />
-        <Route path="genres" element={<Genres />} />
         <Route path="discover" element={<Discover />} />
+        <Route path="search" element={<Search />} />
         <Route path="person/:id" element={<Person />} />
         <Route path="movie/:id" element={<Movie />} />
         <Route path="tv/:id" element={<Tv />} />

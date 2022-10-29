@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { baseUrl, apiKey, baseUrlImage } from '../../Api';
 import { Link } from 'react-router-dom';
+import NoImageAvailable from '../../img/No_Image_Available.jpg';
 
 const Tv = () => {
 
@@ -41,14 +42,14 @@ const Tv = () => {
         {serie.seasons && serie.seasons.map(season => (
           <div key={season.id} className='container-single'>
             <div>
-              <img src={baseUrlImage + season.poster_path} alt={season.name} />
+              {season.poster_path === null ? <img src={NoImageAvailable} alt={season.name} width='300'/> : <img src={baseUrlImage + season.poster_path} alt={season.name} />}
             </div>
             <div>
-              <h3>{season.name}</h3>
-              <p>Air date: {season.air_date}</p>
-              <p>Episodes: {season.episode_count}</p>
-              <p>{season.overview && `overview: ${season.overview}`}</p>
-              <p>Season number: {season.season_number}</p>
+              {season.name && <h3>{season.name}</h3>}
+              {season.air_date && <p>Air date: {season.air_date}</p>}
+              {season.episode_count && <p>Episodes: {season.episode_count}</p>}
+              {season.overview && <p>{season.overview && `overview: ${season.overview}`}</p>}
+              {season.season_number && <p>Season number: {season.season_number}</p>}
               <Link to={`/tv/${serie.id}/season/${season.season_number}`}>View season</Link>
             </div>
           </div>

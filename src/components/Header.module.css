@@ -33,3 +33,13 @@ h2 {
 .header nav ul li {
   box-shadow: 1px 0 0 0;
 }
+
+.header form {
+  padding-left: 1rem;
+}
+
+.header svg {
+  height: 100%;
+  width: 100%;
+  padding: 0 .5rem;
+}

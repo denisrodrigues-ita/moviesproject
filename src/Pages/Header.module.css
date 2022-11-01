@@ -43,3 +43,12 @@ h2 {
   width: 100%;
   padding: 0 .5rem;
 }
+
+.ulOptionNoActive {
+  visibility: hidden;
+  display: block;
+}
+
+.ulOptionActive {
+  
+}

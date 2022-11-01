@@ -1,19 +1,19 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './components/Home';
-import TopRatedMovies from './components/TopRatedMovies/TopRatedMovies';
-import TopRatedSeries from './components/TopRatedSeries/TopRatedSeries';
-import Collection from './components/Collection/Collection';
-import Trending from './components/Trending/Trending';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Movie from './components/Movie/Movie';
-import Discover from './components/Discover/Discover';
-import Tv from './components/Tv/Tv';
-import Season from './components/Season/Season';
-import Episode from './components/Episode/Episode';
-import Person from './components/Person/Person';
-import Search from './components/Search/Search';
+import Home from './Pages/Home';
+import TopRatedMovies from './Pages/TopRatedMovies/TopRatedMovies';
+import TopRatedSeries from './Pages/TopRatedSeries/TopRatedSeries';
+import Collection from './Pages/Collection/Collection';
+import Trending from './Pages/Trending/Trending';
+import Header from './Pages/Header';
+import Footer from './Pages/Footer';
+import Movie from './Pages/Movie/Movie';
+import Discover from './Pages/Discover/Discover';
+import Tv from './Pages/Tv/Tv';
+import Season from './Pages/Season/Season';
+import Episode from './Pages/Episode/Episode';
+import Person from './Pages/Person/Person';
+import Search from './Pages/Search/Search';
 import './App.css';
 
 function App() {

@@ -46,8 +46,8 @@ const Header = () => {
             <button type="submit"><BsSearch /></button>
           </form>
         </ul>
-      </nav>
-    </header>
+      </nav >
+    </header >
   );
 }
 

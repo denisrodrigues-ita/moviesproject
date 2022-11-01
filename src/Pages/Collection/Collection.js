@@ -36,9 +36,9 @@ const Collection = () => {
               <img src={`${baseUrlImage}${part.poster_path}`} alt={part.title} />
             </div>
             <div>
-              <h3>Title: {part.title}</h3>
-              <p>Overview: {part.overview}</p>
-              <p>Year: {part.release_date}</p>
+              {part.title && <h3>Title: {part.title}</h3>}
+              {part.overview &&<p>Overview: {part.overview}</p>}
+              {part.release_date &&<p>Year: {part.release_date}</p>}
               <Link to={`/movie/${part.id}`}>View more</Link>
             </div>
           </div>

@@ -106,3 +106,15 @@ a.active {
   background-color: #CFCD3E;
   color: #820D0D;
 }
+
+@media (max-width: 800px) {
+  .btnNavigation {
+    display: flex;
+    margin-top: 4rem;
+  }
+
+  .btnNavigation button {
+    font-size: x-small;
+    padding: .1rem .3rem;
+  }
+}

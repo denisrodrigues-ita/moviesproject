@@ -26,6 +26,7 @@ const Search = () => {
     setCurrentPage(p);
   }
 
+  if (search.total_pages === 0) return <h2 style={{ textAlign: 'center' }}>No results found</h2>
   if (search)
     return (
       <section>

@@ -1,10 +1,10 @@
-p {
+.home p {
   font-size: larger;
   padding: 1rem;
 }
 
 @media (max-width: 800px) {
-  p {
+  .home p {
     margin-top: 5rem;
   }
 }

@@ -19,8 +19,8 @@ const Collection = () => {
 
   if (collection)
     return (
-      <section className={styles.collection}>
-        <div>
+      <section >
+        <div className='container-single'>
           <div>
             <img src={`${baseUrlImage}${collection.poster_path}`} alt={collection.name} />
           </div>
@@ -31,7 +31,7 @@ const Collection = () => {
         </div>
 
         {collection.parts.map((part) => (
-          <div key={part.id} className={styles.card}>
+          <div key={part.id} className='container-single'>
             <div>
               <img src={`${baseUrlImage}${part.poster_path}`} alt={part.title} />
             </div>

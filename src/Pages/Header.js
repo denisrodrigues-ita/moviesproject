@@ -21,8 +21,6 @@ const Header = () => {
     setSearch('');
   }
 
-  console.log(btnActive)
-
   return (
     <header className={styles.header}>
       <div className={styles.logo}>

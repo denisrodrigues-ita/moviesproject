@@ -1,44 +1,36 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { apiKey, baseUrlImage, baseUrl } from '../../Api';
+import { baseUrlImage } from '../../Api';
 import imageNoAvailable from '../../img/No_Image_Available.jpg';
+import ApiFetch from '../../Components/ApiFetch';
 import styles from './Episode.module.css';
 
 const Episode = () => {
 
-  const [episode, setEpisode] = React.useState(null);
   const { id, se, nu } = useParams();
+  const { data, loading, error } = ApiFetch({ type: '/tv/', id, se, nu })
 
-  React.useEffect(() => {
-    const fetchEpisode = async () => {
-      const response = await fetch(`${baseUrl}/tv/${id}/season/${se}/episode/${nu}${apiKey}`);
-      const json = await response.json();
-      setEpisode(json);
-    }
-    fetchEpisode();
-  }, [id, se, nu]);
-
-  console.log(episode)
-
-  if (episode)
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>{error}</p>
+  if (data)
     return (
       <section>
         <div className='container-single'>
           <div>
-            <img src={`${baseUrlImage}${episode.still_path}`} alt={episode.name} />
+            <img src={`${baseUrlImage}${data.still_path}`} alt={data.name} />
           </div>
           <div>
-            <h3>{episode.name}</h3>
-            <p>Episode: {episode.episode_number}</p>
-            <p>Date: {episode.air_date}</p>
-            <p>Runtime: {episode.runtime}</p>
-            <p>Overview: {episode.overview}</p>
+            <h3>{data.name}</h3>
+            <p>Episode: {data.episode_number}</p>
+            <p>Date: {data.air_date}</p>
+            <p>Runtime: {data.runtime}</p>
+            <p>Overview: {data.overview}</p>
           </div>
         </div>
 
         <div className={styles.flexCard}>
           <h2>Guest stars</h2>
-          {episode.guest_stars.map((guest) => (
+          {data.guest_stars.map((guest) => (
             <div key={guest.id}>
               <div>
                 {guest.profile_path === null ? <img src={imageNoAvailable} alt={guest.name} /> : <img src={`${baseUrlImage}${guest.profile_path}`} alt={guest.name} />}

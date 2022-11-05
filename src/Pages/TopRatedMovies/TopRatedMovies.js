@@ -1,34 +1,23 @@
 import React from 'react';
-import { apiKey, baseUrlImage, baseUrl } from '../../Api';
+import { baseUrlImage } from '../../Api';
 import { AiFillStar } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import Pagination from '../../Components/Pagination';
+import ApiFetch from '../../Components/ApiFetch';
 
 const TopRatedMovies = () => {
 
-  const [movies, setMovies] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [lastPage, setLastPage] = React.useState(null);
 
-  React.useEffect(() => {
-    try {
-      const fetchMovies = async () => {
-        const response = await fetch(`${baseUrl}/movie/top_rated${apiKey}&page=${currentPage}`);
-        const json = await response.json();
-        setMovies(json);
-        json.total_pages > 500 ? setLastPage(500) : setLastPage(json.total_pages);
-      }
-      fetchMovies();
-    } catch (error) {
-      error.message = 'Something went wrong';
-    }
-  }, [currentPage]);
+  const {data, loading, error, lastPage} = ApiFetch({currentPage, type: '/movie/top_rated'});
 
   const pageNavigation = (p) => {
     setCurrentPage(p);
   }
 
-  if (movies)
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error</p>
+  if (data)
     return (
       <section>
         <Pagination
@@ -37,7 +26,7 @@ const TopRatedMovies = () => {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage} />
         <div className='container'>
-          {movies.results.map(movie => (
+          {data.results.map(movie => (
             <div key={movie.id}>
               <img src={baseUrlImage + movie.poster_path} alt={movie.title} />
               <p>{movie.title}</p>
@@ -51,4 +40,4 @@ const TopRatedMovies = () => {
     )
 }
 
-export default TopRatedMovies
+export default TopRatedMovies;

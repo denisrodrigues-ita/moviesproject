@@ -1,37 +1,32 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import imageNoAvailable from '../../img/No_Image_Available.jpg';
-import { baseUrl, apiKey, baseUrlImage } from '../../Api';
+import { baseUrlImage } from '../../Api';
+import ApiFetch from '../../Components/ApiFetch';
 
 const Season = () => {
 
-  const [episode, setEpisode] = React.useState(null);
   const { id, se } = useParams();
 
-  React.useEffect(() => {
-    const fetchEpisode = async () => {
-      const response = await fetch(`${baseUrl}/tv/${id}/season/${se}${apiKey}`);
-      const json = await response.json();
-      setEpisode(json);
-    }
-    fetchEpisode();
-  }, [id, se]);
+  const { data, loading, error } = ApiFetch({ type: '/tv/', id, se });
 
-  if (episode)
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>{error}</p>
+  if (data)
     return (
       <section>
         <div className='container-single'>
           <div>
-            <img src={baseUrlImage + episode.poster_path} alt={episode.name} />
+            <img src={baseUrlImage + data.poster_path} alt={data.name} />
           </div>
           <div>
-            <h3>Title: {episode.name}</h3>
-            <p>Season: {episode.season_number}</p>
-            <p>Overview: {episode.overview}</p>
+            <h3>Title: {data.name}</h3>
+            <p>Season: {data.season_number}</p>
+            <p>Overview: {data.overview}</p>
           </div>
         </div>
 
-        {episode.episodes && episode.episodes.map(ep => (
+        {data.episodes && data.episodes.map(ep => (
           <div key={ep.id} className='container-single'>
             <div>
               {ep.still_path === null ? <img src={imageNoAvailable} alt={ep.name} width='300' height='200' /> : <img src={baseUrlImage + ep.still_path} alt={ep.name} />}

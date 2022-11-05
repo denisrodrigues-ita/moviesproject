@@ -1,35 +1,30 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { baseUrl, apiKey, baseUrlImage } from '../../Api';
+import { baseUrlImage } from '../../Api';
 import { Link } from 'react-router-dom';
+import ApiFetch from '../../Components/ApiFetch';
 
 const Movie = () => {
 
-  const [movie, setMovie] = React.useState(null);
   const { id } = useParams();
 
-  React.useEffect(() => {
-    const fetchMovie = async () => {
-      const response = await fetch(`${baseUrl}/movie/${id}${apiKey}`);
-      const json = await response.json();
-      setMovie(json);
-    }
-    fetchMovie();
-  }, [id]);
+  const { data, loading, error } = ApiFetch({ type: '/movie/', id });
 
-  if (movie)
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>{error}</p>
+  if (data)
     return (
       <section className='container-single'>
         <div>
-          <img src={baseUrlImage + movie.poster_path} alt={movie.title} />
+          <img src={baseUrlImage + data.poster_path} alt={data.title} />
         </div>
         <div>
-          <h3>Title: {movie.title}</h3>
-          <p>Year: {movie.release_date}</p>
-          <p>Runtime: {movie.runtime}</p>
-          <p>Average: {movie.vote_average}</p>
-          <p>Overview: {movie.overview}</p>
-          {movie.belongs_to_collection && <Link to={`/collection/${movie.belongs_to_collection.id}`}>View collection</Link>}
+          {data.title && <h3>Title: {data.title}</h3>}
+          {data.release_date && <p>Year: {data.release_date}</p>}
+          {data.runtime && <p>Runtime: {data.runtime}</p>}
+          {data.vote_average && <p>Average: {data.vote_average}</p>}
+          {data.overview && <p>Overview: {data.overview}</p>}
+          {data.belongs_to_collection && <Link to={`/collection/${data.belongs_to_collection.id}`}>View collection</Link>}
         </div>
       </section>
     )

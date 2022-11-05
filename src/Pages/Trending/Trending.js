@@ -1,34 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { baseUrlTrending, apiKey, baseUrlImage } from '../../Api';
+import { baseUrlImage } from '../../Api';
 import { AiFillStar } from 'react-icons/ai';
+import ApiFetch from '../../Components/ApiFetch';
 import Pagination from '../../Components/Pagination';
 
 const Trending = () => {
 
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [lastPage, setLastPage] = React.useState(null);
-  const [trendings, setTrendings] = React.useState(null);
-
-  React.useEffect(() => {
-    try {
-      const fetchTrendings = async () => {
-        const response = await fetch(`${baseUrlTrending}${apiKey}&page=${currentPage}`);
-        const json = await response.json();
-        setTrendings(json);
-        json.total_pages > 500 ? setLastPage(500) : setLastPage(json.total_pages);
-      }
-      fetchTrendings();
-    } catch (error) {
-      error.message();
-    }
-  }, [currentPage])
+ 
+  const { data, loading, error, lastPage } = ApiFetch({ currentPage, type: 'trending/all/day' });
 
   const pageNavigation = (p) => {
     setCurrentPage(p);
   }
 
-  if (trendings)
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>error</p>;
+  if (data)
     return (
       <section>
         <Pagination
@@ -37,7 +26,7 @@ const Trending = () => {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage} />
         <div className='container'>
-          {trendings.results.map(trending => (
+          {data.results.map(trending => (
             <div key={trending.id}>
               <img src={baseUrlImage + trending.poster_path} alt={trending.title} />
               <p>Title: {trending.title ? trending.title : trending.name}</p>

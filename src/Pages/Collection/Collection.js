@@ -1,44 +1,38 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { baseUrlCollection, apiKey, baseUrlImage } from '../../Api';
-import styles from './Collection.module.css';
+import { baseUrlImage } from '../../Api';
+import ApiFetch from '../../Components/ApiFetch';
 
 const Collection = () => {
 
-  const [collection, setCollection] = React.useState(null);
   const { id } = useParams();
 
-  React.useEffect(() => {
-    const fetchCollection = async () => {
-      const response = await fetch(`${baseUrlCollection}${id}${apiKey}`);
-      const json = await response.json();
-      setCollection(json);
-    }
-    fetchCollection();
-  }, [id]);
+  const { data, loading, error } = ApiFetch({ type: 'collection/', id });
 
-  if (collection)
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error...</p>;
+  if (data)
     return (
       <section >
         <div className='container-single'>
           <div>
-            <img src={`${baseUrlImage}${collection.poster_path}`} alt={collection.name} />
+            <img src={`${baseUrlImage}${data.poster_path}`} alt={data.name} />
           </div>
           <div>
-            <h3>{collection.name}</h3>
-            <p>Overview: {collection.overview}</p>
+            <h3>{data.name}</h3>
+            <p>Overview: {data.overview}</p>
           </div>
         </div>
 
-        {collection.parts.map((part) => (
+        {data.parts.map((part) => (
           <div key={part.id} className='container-single'>
             <div>
               <img src={`${baseUrlImage}${part.poster_path}`} alt={part.title} />
             </div>
             <div>
               {part.title && <h3>Title: {part.title}</h3>}
-              {part.overview &&<p>Overview: {part.overview}</p>}
-              {part.release_date &&<p>Year: {part.release_date}</p>}
+              {part.overview && <p>Overview: {part.overview}</p>}
+              {part.release_date && <p>Year: {part.release_date}</p>}
               <Link to={`/movie/${part.id}`}>View more</Link>
             </div>
           </div>

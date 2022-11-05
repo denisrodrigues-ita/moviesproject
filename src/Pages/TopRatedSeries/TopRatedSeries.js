@@ -1,34 +1,23 @@
 import React from 'react';
-import { apiKey, baseUrlImage, baseUrl } from '../../Api';
+import { baseUrlImage } from '../../Api';
 import { AiFillStar } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import Pagination from '../../Components/Pagination';
+import ApiFetch from '../../Components/ApiFetch';
 
 const TopRatedSeries = () => {
 
-  const [series, setSeries] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [lastPage, setLastPage] = React.useState(null);
 
-  React.useEffect(() => {
-    try {
-      const fetchSeries = async () => {
-        const response = await fetch(`${baseUrl}/tv/top_rated${apiKey}&page=${currentPage}`);
-        const json = await response.json();
-        setSeries(json);
-        json.total_pages > 500 ? setLastPage(500) : setLastPage(json.total_pages);
-      }
-      fetchSeries();
-    } catch (error) {
-      error.message = 'Something went wrong';
-    }
-  }, [currentPage, series]);
+  const { data, loading, error, lastPage } = ApiFetch({ currentPage, type: 'tv/top_rated' });
 
   const pageNavigation = (p) => {
     setCurrentPage(p);
   }
 
-  if (series)
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>error</p>;
+  if (data)
     return (
       <section>
         <Pagination
@@ -37,7 +26,7 @@ const TopRatedSeries = () => {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage} />
         <div className='container'>
-          {series.results.map(serie => (
+          {data.results.map(serie => (
             <div key={serie.id}>
               <img src={baseUrlImage + serie.poster_path} alt={serie.title} />
               <p>{serie.name}</p>

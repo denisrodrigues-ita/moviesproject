@@ -1,32 +1,25 @@
 import React from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { apiKey, baseUrl, baseUrlImage } from '../../Api';
+import { baseUrlImage } from '../../Api';
 import { AiFillStar } from 'react-icons/ai';
 import Pagination from '../../Components/Pagination';
+import ApiFetch from '../../Components/ApiFetch';
 
 const Search = () => {
 
-  const [search, setSearch] = React.useState(null);
-  const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [lastPage, setLastPage] = React.useState(null);
+  const [searchParams] = useSearchParams();
   const query = searchParams.get('q');
 
-  React.useEffect(() => {
-    const fetchSearch = async () => {
-      const response = await fetch(`${baseUrl}/search/multi${apiKey}&query=${query}&page=${currentPage}`);
-      const json = await response.json();
-      setSearch(json);
-      json.total_pages > 500 ? setLastPage(500) : setLastPage(json.total_pages);
-    }
-    fetchSearch();
-  }, [query, search, lastPage, currentPage]);
+  const { data, loading, error, lastPage } = ApiFetch({ currentPage, type: '/search/multi', query });
 
   const pageNavigation = (p) => {
     setCurrentPage(p);
   }
 
-  if (search)
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>{error}</p>
+  if (data)
     return (
       <section>
         <Pagination
@@ -35,7 +28,7 @@ const Search = () => {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage} />
         <div className='container'>
-          {search.results.map(item => (
+          {data.results.map(item => (
             <div key={item.id}>
               <img src={baseUrlImage + item.poster_path} alt={item.title} />
               <p>Title: {item.title ? item.title : item.name}</p>

@@ -69,11 +69,16 @@ h2 {
   }
 
   .btnMenuDisabled {
-    display: none;
+    visibility:hidden;
+    opacity:0;
+    height: 0;
+    transition: all .3s linear;
   }
 
   .btnMenuActive {
-    display: block;
+    visibility:visible;
+    opacity:1;
+    height: 100%;
   }
 
   .btnMenuActive ul {

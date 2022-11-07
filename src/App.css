@@ -38,7 +38,7 @@ h1 {
 a.active {
   background-color: var(--color-second);
   border-radius: 1.1rem;
-  transition: .3s ;
+  transition: .3s;
 }
 
 .container {
@@ -49,7 +49,7 @@ a.active {
   margin-top: 2rem;
 }
 
-.container > div {
+.container>div {
   width: 300px;
   text-align: center;
   margin: auto;
@@ -68,8 +68,8 @@ a.active {
   padding: .2rem 1rem;
   font-weight: bold;
   cursor: pointer;
-  background-color: #CFCD3E;
-  color: #820D0D;
+  background-color: var(--color-second);
+  color: var(--color-first);
 }
 
 .container-single {
@@ -92,8 +92,8 @@ a.active {
   padding: .2rem 1rem;
   font-weight: bold;
   cursor: pointer;
-  background-color: #CFCD3E;
-  color: #820D0D;
+  background-color: var(--color-second);
+  color: var(--color-first);
 }
 
 .btnNavigation button {
@@ -103,8 +103,8 @@ a.active {
   padding: .2rem 1rem;
   font-weight: bold;
   cursor: pointer;
-  background-color: #CFCD3E;
-  color: #820D0D;
+  background-color: var(--color-second);
+  color: var(--color-first);
 }
 
 @media (max-width: 800px) {
@@ -120,14 +120,29 @@ a.active {
 
   .container-single {
     margin: 5rem 0;
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
     justify-content: center;
     justify-items: center;
-    text-align: center;
+    text-align: justify;
   }
 
   .container-single img {
-      max-width : 100px;
-    }
+    width: 100px;
+  }
+}
+
+.loading {
+  animation: is-rotating 1s infinite;
+  border: 10px solid var(--color-first);
+  border-radius: 50%;
+  border-top-color: var(--color-second);
+  height: 80px;
+  width: 80px;
+  margin: auto;
+}
+
+@keyframes is-rotating {
+  to {
+    transform: rotate(1turn);
+  }
 }

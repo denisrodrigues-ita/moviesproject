@@ -9,8 +9,8 @@ const Collection = () => {
 
   const { data, loading, error } = ApiFetch({ type: 'collection/', id });
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error...</p>;
+  if (loading) return <p className='loading'></p>;
+  if (error) return <p>{error}</p>;
   if (data)
     return (
       <section >

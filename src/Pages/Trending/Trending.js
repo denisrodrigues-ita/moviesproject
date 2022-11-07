@@ -15,8 +15,8 @@ const Trending = () => {
     setCurrentPage(p);
   }
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>error</p>;
+  if (loading) return <p className='loading'></p>;
+  if (error) return <p>{error}</p>;
   if (data)
     return (
       <section>

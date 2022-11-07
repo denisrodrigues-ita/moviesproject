@@ -11,7 +11,7 @@ const Tv = () => {
 
   const { data, loading, error } = ApiFetch({ id, type: 'tv/' });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p className='loading'></p>;
   if (error) return <p>error</p>;
   if (data)
     return (
@@ -21,14 +21,14 @@ const Tv = () => {
             <img src={baseUrlImage + data.poster_path} alt={data.title} />
           </div>
           <div>
-            <h3>Title: {data.name}</h3>
-            <p>First air date: {data.first_air_date}</p>
-            <p>Last air date: {data.last_air_date}</p>
-            <p>Number of episodes: {data.number_of_episodes}</p>
-            <p>Number of seasons: {data.number_of_seasons}</p>
-            <p>Status: {data.status}</p>
-            <p>Average: {data.vote_average}</p>
-            <p>Overview: {data.overview}</p>
+            {data.name && <h3>Title: {data.name}</h3>}
+            {data.first_air_date && <p>First air date: {data.first_air_date}</p>}
+            {data.last_air_date && <p>Last air date: {data.last_air_date}</p>}
+            {data.number_of_episodes && <p>Number of episodes: {data.number_of_episodes}</p>}
+            {data.number_of_seasons && <p>Number of seasons: {data.number_of_seasons}</p>}
+            {data.status && <p>Status: {data.status}</p>}
+            {data.vote_average && <p>Average: {data.vote_average}</p>}
+            {data.overview && <p>Overview: {data.overview}</p>}
           </div>
         </div>
 
@@ -42,7 +42,7 @@ const Tv = () => {
               {season.air_date && <p>Air date: {season.air_date}</p>}
               {season.episode_count && <p>Episodes: {season.episode_count}</p>}
               {season.overview && <p>{season.overview && `overview: ${season.overview}`}</p>}
-              {season.season_number && <p>Season number: {season.season_number}</p>}
+              {season.season_number != null && <p>Season number: {season.season_number}</p>}
               <Link to={`/tv/${data.id}/season/${season.season_number}`}>View season</Link>
             </div>
           </div>

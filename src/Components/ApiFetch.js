@@ -1,5 +1,7 @@
 import React from 'react'
-import { apiKey, baseUrl } from '../Api';
+
+const apiKey = '?api_key=221ba13524aa9f7c909c0d04b62d9606';
+const baseUrl = 'https://api.themoviedb.org/3/';
 
 const ApiFetch = ({ currentPage = '', type, id = '', query = '', se = '', type_credits = '', nu = '' }) => {
 
@@ -16,12 +18,11 @@ const ApiFetch = ({ currentPage = '', type, id = '', query = '', se = '', type_c
         const json = await response.json();
         setData(json);
         json.total_pages > 500 ? setLastPage(500) : setLastPage(json.total_pages);
+        setLoading(false);
       }
       fetchData();
     } catch (e) {
-      setError(e);
-    } finally {
-      setLoading(false);
+      setError(e.message);
     }
   }, [currentPage, type, id, query, se, type_credits, nu]);
 

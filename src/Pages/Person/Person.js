@@ -10,7 +10,7 @@ const Person = () => {
   const person = ApiFetch({ type: '/person/', id });
   const participation = ApiFetch({ type: '/person/', id, type_credits: '/tv_credits' });
 
-  if (person.loading) return <p>Loading...</p>
+  if (person.loading) return <p className='loading'></p>
   if (person.error) return <p>{person.error}</p>
   if (person.data)
     return (

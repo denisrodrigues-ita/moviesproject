@@ -10,7 +10,7 @@ const Movie = () => {
 
   const { data, loading, error } = ApiFetch({ type: '/movie/', id });
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <p className='loading'></p>;
   if (error) return <p>{error}</p>
   if (data)
     return (

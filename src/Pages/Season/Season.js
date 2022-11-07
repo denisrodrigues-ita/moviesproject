@@ -10,7 +10,7 @@ const Season = () => {
 
   const { data, loading, error } = ApiFetch({ type: '/tv/', id, se });
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <p className='loading'></p>;
   if (error) return <p>{error}</p>
   if (data)
     return (

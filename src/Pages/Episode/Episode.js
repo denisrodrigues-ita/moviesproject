@@ -10,7 +10,7 @@ const Episode = () => {
   const { id, se, nu } = useParams();
   const { data, loading, error } = ApiFetch({ type: '/tv/', id, se, nu })
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <p className='loading'></p>;
   if (error) return <p>{error}</p>
   if (data)
     return (
@@ -21,10 +21,10 @@ const Episode = () => {
           </div>
           <div>
             <h3>{data.name}</h3>
-            <p>Episode: {data.episode_number}</p>
-            <p>Date: {data.air_date}</p>
-            <p>Runtime: {data.runtime}</p>
-            <p>Overview: {data.overview}</p>
+            {data.episode_number && <p>Episode: {data.episode_number}</p>}
+            {data.air_date && <p>Date: {data.air_date}</p>}
+            {data.runtime && <p>Runtime: {data.runtime}</p>}
+            {data.overview && <p>Overview: {data.overview}</p>}
           </div>
         </div>
 

@@ -14,6 +14,7 @@ import Season from './Pages/Season/Season';
 import Episode from './Pages/Episode/Episode';
 import Person from './Pages/Person/Person';
 import Search from './Pages/Search/Search';
+import NotFound from './Pages/NotFound/NotFound';
 import './App.css';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="tv/:id" element={<Tv />} />
         <Route path="tv/:id/season/:se" element={<Season />} />
         <Route path="tv/:id/season/:se/episode/:nu" element={<Episode />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </BrowserRouter>
